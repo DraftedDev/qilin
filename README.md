@@ -6,6 +6,9 @@
 Qilin is a super lightweight 2D Game Engine made with Rust.\
 The focus of this Project is to develop a Game Engine to make 2D Games fast, performant and without a bunch of bytes.
 
+## Features & Future Improvements
+See [FEATURES.md](FEATURES.md)...
+
 ## Goals
 - **Fun**: Qilin is not a serious engine, but rather a fun Project to make fun Games with fun.
 - **Compile Times**: Developing Games in Rust can be very slow, due to compile times. Qilin tries to fix this by reducing features & dependencies.
@@ -17,3 +20,13 @@ The focus of this Project is to develop a Game Engine to make 2D Games fast, per
 - `default`: Doesn't contain any other features, so you can 100% customize qilin.
 - `minifb`: Exports internal minifb crate.
 - `image`: Exports module to convert Images from the `image` crate to Qilin Images.
+
+## Submitting Issues
+Make sure your issue isn't a duplicate and please respect the Code of Conduct.
+
+## Contributing
+See [CONTRIBUTING.md](CONTRIBUTING.md).
+
+## License
+Qilin is dual licensed under the MIT and Apache 2.0 License.\
+Unless you explicitly state otherwise, you contributed code will be too dual licensed under these terms.

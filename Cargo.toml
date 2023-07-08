@@ -4,24 +4,26 @@ version = "0.1.0"
 edition = "2021"
 description = "Super small 2D Game Engine for making awesome Games in Rust."
 authors = ["DraftedDev"]
+license = "MIT OR Apache-2.0"
+readme = "README.md"
+repository = "https://github.com/DraftedDev/qilin"
+keywords = ["2d", "game-engine", "games"]
+categories = ["game-development", "game-engines", "graphics"]
 
 [dependencies]
-futures-lite = "1.13.0"
 minifb = "0.24.0"
 mint = "0.5.9"
 image = { version = "0.24.6", optional = true, default-features = false }
 
 [features]
+# Doesn't contain any features
 default = []
+# Exports internal minifb dependency
 minifb = []
+# Exports utility functions for converting images from the image crate to a qilin image
 image = ["dep:image", "image/bmp", "image/jpeg", "image/png", "image/ico"]
 
 [[example]]
 name = "shapes"
 path = "examples/shapes.rs"
 harness = false
-
-[profile.release]
-opt-level = "s"
-lto = true
-codegen-units = 1

@@ -1,9 +1,10 @@
-use minifb::{Window};
 use crate::game::context::GameContext;
 use crate::render::canvas::Canvas;
 use crate::scene::Scene;
 use crate::types::GameConfig;
+use minifb::Window;
 
+/// Main Game initiator to run window and enter scenes.
 pub struct Game {
     config: GameConfig,
     scene: Box<dyn Scene>,
@@ -11,8 +12,12 @@ pub struct Game {
 
 impl Game {
 
+    /// Create a new game with given entry scene.
     #[inline]
-    pub fn new<S: Scene + 'static>() -> Self where Self: Sized {
+    pub fn new<S: Scene + 'static>() -> Self
+    where
+        Self: Sized,
+    {
         let mut scene = S::new();
         scene.enter();
 
@@ -22,12 +27,14 @@ impl Game {
         }
     }
 
+    /// Use given [GameConfig] as config.
     #[inline]
     pub fn with_config(mut self, config: GameConfig) -> Self {
         self.config = config;
         self
     }
 
+    /// Enter new [Scene].
     #[inline(never)]
     pub fn enter_scene<S: Scene + 'static>(mut self) -> Self {
         // finish old scene
@@ -41,6 +48,7 @@ impl Game {
         self
     }
 
+    /// Run game.
     #[inline]
     pub fn play(mut self) -> minifb::Result<()> {
         let width = &self.config.width;
@@ -58,11 +66,14 @@ impl Game {
         let mut canvas = Canvas::new(*width, *height);
 
         while window.is_open() {
-            self.scene.update(&mut canvas, &mut GameContext::new(&mut window));
+            self.scene
+                .update(&mut canvas, &mut GameContext::new(&mut window));
             window.update_with_buffer(&canvas.clone().buffer(), *width, *height)?;
         }
 
+        // make sure the last scene also calls exit()
+        self.scene.exit();
+
         return Ok(());
     }
-
 }

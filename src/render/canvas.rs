@@ -1,6 +1,7 @@
 use crate::render::color::Color;
 use crate::render::sketch::Sketch;
 
+/// Canvas of a game, containing a buffer of pixels to draw to the window.
 #[derive(Clone)]
 pub struct Canvas {
     width: usize,
@@ -9,6 +10,9 @@ pub struct Canvas {
 }
 
 impl Canvas {
+
+    /// Create a new canvas from width and height.
+    #[inline]
     pub fn new(width: usize, height: usize) -> Self {
         let buffer = vec![0; width * height];
         Self {
@@ -18,10 +22,14 @@ impl Canvas {
         }
     }
 
+    /// Returns the buffer as [Vec] containing 0RGB pixels.
+    #[inline]
     pub fn buffer(self) -> Vec<u32> {
         self.buffer
     }
 
+    /// Resize the canvas.
+    #[inline(never)]
     pub fn resize(&mut self, new_width: usize, new_height: usize) {
         let new_size = new_width * new_height;
         let mut new_buffer = vec![0; new_size];
@@ -40,12 +48,17 @@ impl Canvas {
         self.buffer = new_buffer;
     }
 
+    /// Set pixel at `x` and `y` to `color`.
+    #[inline]
     pub fn set_pixel(&mut self, x: usize, y: usize, color: &Color) {
         if let Some(px) = self.buffer.get_mut(y * self.width + x) {
             *px = color.0;
         }
     }
 
+    /// Clear the canvas with `color`.\
+    /// **NOTE**: Canvas does not always match window dimensions. To change the background color of the window, use [crate::game::context::GameContext].
+    #[inline(never)]
     pub fn clear(&mut self, color: &Color) {
         for y in 0..self.height {
             for x in 0..self.width {
@@ -54,16 +67,22 @@ impl Canvas {
         }
     }
 
+    /// Draw a [Sketch] to the canvas.
+    #[inline]
     pub fn draw(&mut self, sketch: &Sketch) {
         for op in &sketch.0 {
             op.apply(self);
         }
     }
 
+    /// Get window width.
+    #[inline]
     pub fn width(&self) -> usize {
         self.width
     }
 
+    /// Get window height.
+    #[inline]
     pub fn height(&self) -> usize {
         self.height
     }
