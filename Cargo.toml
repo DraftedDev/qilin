@@ -1,0 +1,27 @@
+[package]
+name = "qilin"
+version = "0.1.0"
+edition = "2021"
+description = "Super small 2D Game Engine for making awesome Games in Rust."
+authors = ["DraftedDev"]
+
+[dependencies]
+futures-lite = "1.13.0"
+minifb = "0.24.0"
+mint = "0.5.9"
+image = { version = "0.24.6", optional = true, default-features = false }
+
+[features]
+default = []
+minifb = []
+image = ["dep:image", "image/bmp", "image/jpeg", "image/png", "image/ico"]
+
+[[example]]
+name = "shapes"
+path = "examples/shapes.rs"
+harness = false
+
+[profile.release]
+opt-level = "s"
+lto = true
+codegen-units = 1

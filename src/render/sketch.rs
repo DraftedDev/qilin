@@ -1,0 +1,160 @@
+use mint::{Point2, Vector2};
+use crate::render::canvas::Canvas;
+use crate::render::color::Color;
+use crate::types::Image;
+
+pub struct Sketch(pub(crate) Vec<Operation>);
+
+impl Sketch {
+    pub fn new() -> Self {
+        Self(Vec::new())
+    }
+
+    pub fn line(&mut self, from: Vector2<u32>, to: Vector2<u32>, color: Color) -> &mut Sketch {
+        self.0.push(Operation::Line {
+            from,
+            to,
+            color
+        });
+        self
+    }
+
+    pub fn circle(&mut self, pos: Vector2<u32>, radius: u32, color: Color) -> &mut Sketch {
+        self.0.push(Operation::Circle {
+            pos,
+            radius,
+            color
+        });
+        self
+    }
+
+    pub fn rect(&mut self, pos: Vector2<u32>, width: u32, height: u32, color: Color) -> &mut Sketch {
+        self.0.push(Operation::Rect {
+            pos,
+            width,
+            height,
+            color
+        });
+        self
+    }
+
+    pub fn image(&mut self, pos: Vector2<u32>, width: u32, height: u32, data: Vec<Color>) -> &mut Sketch {
+        self.0.push(Operation::Image {
+            pos,
+            width,
+            height,
+            data
+        });
+        self
+    }
+
+    pub fn empty(&mut self) -> &mut Sketch {
+        self
+    }
+}
+
+pub enum Operation {
+    Line {
+        from: Vector2<u32>,
+        to: Vector2<u32>,
+        color: Color,
+    },
+
+    Circle {
+        pos: Vector2<u32>,
+        radius: u32,
+        color: Color,
+    },
+
+    Rect {
+        pos: Vector2<u32>,
+        width: u32,
+        height: u32,
+        color: Color,
+    },
+
+    Image {
+        pos: Vector2<u32>,
+        width: u32,
+        height: u32,
+        data: Image,
+    }
+}
+
+impl Operation {
+    pub fn apply(&self, canvas: &mut Canvas) {
+        match self {
+            Operation::Line { to, from, color} => {
+                let dx = to.x as isize - from.x as isize;
+                let dy = to.y as isize - from.y as isize;
+                let steps = usize::max(dx.abs() as usize, dy.abs() as usize);
+
+                if steps == 0 {
+                    canvas.set_pixel(from.x as usize, from.y as usize, color);
+                    return;
+                }
+
+                let x_increment = dx as f32 / steps as f32;
+                let y_increment = dy as f32 / steps as f32;
+
+                let mut x = from.x as f32;
+                let mut y = from.y as f32;
+
+                for _ in 0..=steps {
+                    canvas.set_pixel(x as usize, y as usize, color);
+                    x += x_increment;
+                    y += y_increment;
+                }
+            }
+
+            Operation::Circle { pos, radius, color } => {
+                let radius_squared = (*radius as f32).powi(2);
+
+                let (cx, cy) = (pos.x as isize, pos.y as isize);
+                let (start_x, start_y) = (cx - *radius as isize, cy - *radius as isize);
+                let (end_x, end_y) = (cx + *radius as isize, cy + *radius as isize);
+
+                for y in start_y..=end_y {
+                    for x in start_x..=end_x {
+                        let dx = x - cx;
+                        let dy = y - cy;
+                        let distance_squared = (dx * dx + dy * dy) as f32;
+
+                        if distance_squared <= radius_squared {
+                            canvas.set_pixel(x as usize, y as usize, color);
+                        }
+                    }
+                }
+            }
+
+            Operation::Rect { pos, width, height, color } => {
+                let start_x = pos.x as usize;
+                let start_y = pos.y as usize;
+                let end_x = start_x + *width as usize;
+                let end_y = start_y + *height as usize;
+
+                for y in start_y..end_y {
+                    for x in start_x..end_x {
+                        canvas.set_pixel(x, y, color);
+                    }
+                }
+            }
+
+            Operation::Image { pos, width, height, data } => {
+                let start_x = pos.x as usize;
+                let start_y = pos.y as usize;
+                let end_x = start_x + *width as usize;
+                let end_y = start_y + *height as usize;
+
+                let mut index = 0;
+
+                for y in start_y..end_y {
+                    for x in start_x..end_x {
+                        canvas.set_pixel(x, y, &data[index]);
+                        index += 1;
+                    }
+                }
+            }
+        }
+    }
+}
