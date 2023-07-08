@@ -10,7 +10,6 @@ pub struct Canvas {
 }
 
 impl Canvas {
-
     /// Create a new canvas from width and height.
     #[inline]
     pub fn new(width: usize, height: usize) -> Self {

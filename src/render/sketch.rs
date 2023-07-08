@@ -6,7 +6,6 @@ use mint::Vector2;
 pub struct Sketch(pub(crate) Vec<Operation>);
 
 impl Sketch {
-
     /// Create a new empty sketch
     #[inline]
     pub fn new() -> Self {
@@ -101,7 +100,6 @@ pub enum Operation {
 }
 
 impl Operation {
-
     /// Apply operation to a [Canvas].
     #[inline(never)]
     pub fn apply(&self, canvas: &mut Canvas) {

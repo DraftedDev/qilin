@@ -7,7 +7,6 @@ pub struct GameContext<'a> {
 }
 
 impl<'a> GameContext<'a> {
-
     /// Create context from a [Window].
     #[inline]
     pub fn new(window: &'a mut Window) -> GameContext<'a> {

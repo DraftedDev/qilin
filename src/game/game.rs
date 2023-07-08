@@ -11,7 +11,6 @@ pub struct Game {
 }
 
 impl Game {
-
     /// Create a new game with given entry scene.
     #[inline]
     pub fn new<S: Scene + 'static>() -> Self
