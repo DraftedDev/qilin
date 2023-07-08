@@ -1,4 +1,4 @@
-use minifb::{HasRawWindowHandle, Key, KeyRepeat, Window};
+use minifb::{Key, KeyRepeat, Window};
 use crate::render::color::Color;
 
 pub struct GameContext<'a> {

@@ -1,4 +1,4 @@
-use mint::{Point2, Vector2};
+use mint::{Vector2};
 use crate::render::canvas::Canvas;
 use crate::render::color::Color;
 use crate::types::Image;

@@ -1,4 +1,4 @@
-use minifb::{Window, WindowOptions};
+use minifb::{Window};
 use crate::game::context::GameContext;
 use crate::render::canvas::Canvas;
 use crate::scene::Scene;

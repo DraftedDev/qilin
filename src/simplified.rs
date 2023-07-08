@@ -1,4 +1,4 @@
-use mint::{EulerAngles, Vector2, Vector3, Vector4};
+use mint::{Vector2, Vector3, Vector4};
 
 pub fn vec2<T>(x: T, y: T) -> Vector2<T> {
     Vector2::from([x, y])

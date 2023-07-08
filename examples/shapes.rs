@@ -24,7 +24,7 @@ impl Scene for ShapeScene {
     }
 
     // gets called when window requests draw updates
-    fn update(&mut self, canvas: &mut Canvas, ctx: &mut GameContext) {
+    fn update(&mut self, canvas: &mut Canvas, _ctx: &mut GameContext) {
 
         // draw a sketch containing a single shape/line
         canvas.draw(

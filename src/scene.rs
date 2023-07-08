@@ -1,5 +1,5 @@
 use crate::game::context::GameContext;
-use crate::game::game::Game;
+
 use crate::render::canvas::Canvas;
 
 pub trait Scene {
