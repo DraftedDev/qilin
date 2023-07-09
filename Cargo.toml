@@ -2,13 +2,16 @@
 name = "qilin"
 version = "0.1.0"
 edition = "2021"
-description = "Super small 2D Game Engine for making awesome Games in Rust."
-authors = ["DraftedDev"]
+authors = ["DraftedDev", "Qilin Contributors"]
 license = "MIT OR Apache-2.0"
 readme = "README.md"
 repository = "https://github.com/DraftedDev/qilin"
 keywords = ["2d", "game-engine", "games"]
 categories = ["game-development", "game-engines", "graphics"]
+exclude = ["/.github/*"]
+description = """
+Lightweight Game Engine for making fun 2d Games in Rust.
+"""
 
 [dependencies]
 minifb = "0.24.0"
@@ -26,4 +29,9 @@ image = ["dep:image", "image/bmp", "image/jpeg", "image/png", "image/ico"]
 [[example]]
 name = "shapes"
 path = "examples/shapes.rs"
+harness = false
+
+[[example]]
+name = "move"
+path = "examples/move.rs"
 harness = false
