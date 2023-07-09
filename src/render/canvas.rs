@@ -50,8 +50,15 @@ impl Canvas {
     /// Set pixel at `x` and `y` to `color`.
     #[inline]
     pub fn set_pixel(&mut self, x: usize, y: usize, color: &Color) {
-        if let Some(px) = self.buffer.get_mut(y * self.width + x) {
-            *px = color.0;
+        // check for overflows
+        if let Some(cy) = y.checked_mul(self.width) {
+            // check for overflows
+            if let Some(cx) = cy.checked_add(x) {
+                // check for index out of bounds
+                if let Some(px) = self.buffer.get_mut(cx) {
+                    *px = color.0;
+                }
+            }
         }
     }
 
@@ -64,6 +71,13 @@ impl Canvas {
                 self.set_pixel(x, y, color);
             }
         }
+    }
+
+    /// Clears the canvas with black pixels.\
+    /// Shorthand for [Canvas::clear(&Color::BLACK)].
+    #[inline]
+    pub fn cleanse(&mut self) {
+        self.clear(&Color(0))
     }
 
     /// Draw a [Sketch] to the canvas.

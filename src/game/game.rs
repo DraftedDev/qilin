@@ -65,6 +65,7 @@ impl Game {
         let mut canvas = Canvas::new(*width, *height);
 
         while window.is_open() {
+            canvas.cleanse();
             self.scene
                 .update(&mut canvas, &mut GameContext::new(&mut window));
             window.update_with_buffer(&canvas.clone().buffer(), *width, *height)?;
