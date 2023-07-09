@@ -5,9 +5,7 @@ use image::{DynamicImage, Pixel, Rgb};
 
 /// Convert a DynamicImage from the `image` crate to a qilin `Image`.
 #[inline]
-pub fn dynamic_to_img(dynamic: DynamicImage) -> Image {
-    rgb_to_img(dynamic.to_rgb8().pixels())
-}
+pub fn dynamic_to_img(dynamic: DynamicImage) -> Image { rgb_to_img(dynamic.to_rgb8().pixels()) }
 
 /// Convert Rgb<u8> Pixels to a qilin `Image`.
 #[inline(never)]

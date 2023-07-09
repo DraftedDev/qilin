@@ -9,21 +9,15 @@ pub struct GameContext<'a> {
 impl<'a> GameContext<'a> {
     /// Create context from a [Window].
     #[inline]
-    pub fn new(window: &'a mut Window) -> GameContext<'a> {
-        Self { window }
-    }
+    pub fn new(window: &'a mut Window) -> GameContext<'a> { Self { window } }
 
     /// Toggle if the window is topmost.
     #[inline]
-    pub fn set_on_top(&mut self, on_top: bool) {
-        self.window.topmost(on_top);
-    }
+    pub fn set_on_top(&mut self, on_top: bool) { self.window.topmost(on_top); }
 
     /// Get the minifb [Window].
     #[inline]
-    pub fn window(&mut self) -> &Window {
-        &self.window
-    }
+    pub fn window(&mut self) -> &Window { &self.window }
 
     /// Set the background color of the window.\
     /// Use [crate::render::canvas::Canvas::clear] to clear canvas color.
@@ -36,9 +30,7 @@ impl<'a> GameContext<'a> {
 
     /// Set the window title.
     #[inline]
-    pub fn set_title(&mut self, title: &str) {
-        self.window.set_title(title);
-    }
+    pub fn set_title(&mut self, title: &str) { self.window.set_title(title); }
 
     /// Set cursor visibility.
     #[inline]
@@ -47,9 +39,7 @@ impl<'a> GameContext<'a> {
     }
 
     /// Check if the window is open.
-    pub fn is_open(&self) -> bool {
-        self.window.is_open()
-    }
+    pub fn is_open(&self) -> bool { self.window.is_open() }
 
     /// Exit game.
     /// You can also just use [std::process::exit], since this doesn't do anything else (in the moment).
@@ -61,9 +51,7 @@ impl<'a> GameContext<'a> {
 
     /// Check if a key is down.
     #[inline]
-    pub fn is_key_down(&self, key: Key) -> bool {
-        self.window.is_key_down(key)
-    }
+    pub fn is_key_down(&self, key: Key) -> bool { self.window.is_key_down(key) }
 
     /// Check if a key is pressed.
     #[inline]
@@ -73,7 +61,5 @@ impl<'a> GameContext<'a> {
 
     /// Check if a key is released
     #[inline]
-    pub fn is_key_released(&self, key: Key) -> bool {
-        self.window.is_key_released(key)
-    }
+    pub fn is_key_released(&self, key: Key) -> bool { self.window.is_key_released(key) }
 }

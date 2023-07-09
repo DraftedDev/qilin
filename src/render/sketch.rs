@@ -8,9 +8,7 @@ pub struct Sketch(pub(crate) Vec<Operation>);
 impl Sketch {
     /// Create a new empty sketch
     #[inline]
-    pub fn new() -> Self {
-        Self(Vec::new())
-    }
+    pub fn new() -> Self { Self(Vec::new()) }
 
     /// Draw a line from `from` to `to` with color `color`
     #[inline]
@@ -65,9 +63,7 @@ impl Sketch {
     /// Just returns [Sketch] as &mut.\
     /// Only existent for example and testing purposes.
     #[inline]
-    pub fn empty(&mut self) -> &mut Sketch {
-        self
-    }
+    pub fn empty(&mut self) -> &mut Sketch { self }
 }
 
 /// A drawing operation to apply to a [Canvas] using a [Sketch].

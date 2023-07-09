@@ -33,9 +33,7 @@ impl Scene for BounceScene {
     }
 
     // gets called when game enters current scene
-    fn enter(&mut self) {
-        println!("What do you call a fake noodle?")
-    }
+    fn enter(&mut self) { println!("What do you call a fake noodle?") }
 
     // gets called when window requests draw updates
     fn update(&mut self, canvas: &mut Canvas, ctx: &mut GameContext) {
@@ -72,9 +70,7 @@ impl Scene for BounceScene {
     }
 
     // gets called when game exits current scene
-    fn exit(&mut self) {
-        println!("An impasta!")
-    }
+    fn exit(&mut self) { println!("An impasta!") }
 }
 
 fn main() {

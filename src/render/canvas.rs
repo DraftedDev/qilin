@@ -23,9 +23,7 @@ impl Canvas {
 
     /// Returns the buffer as [Vec] containing 0RGB pixels.
     #[inline]
-    pub fn buffer(self) -> Vec<u32> {
-        self.buffer
-    }
+    pub fn buffer(self) -> Vec<u32> { self.buffer }
 
     /// Resize the canvas.
     #[inline(never)]
@@ -76,9 +74,7 @@ impl Canvas {
     /// Clears the canvas with black pixels.\
     /// Shorthand for [Canvas::clear(&Color::BLACK)].
     #[inline]
-    pub fn cleanse(&mut self) {
-        self.clear(&Color(0))
-    }
+    pub fn cleanse(&mut self) { self.clear(&Color(0)) }
 
     /// Draw a [Sketch] to the canvas.
     #[inline]
@@ -90,13 +86,9 @@ impl Canvas {
 
     /// Get window width.
     #[inline]
-    pub fn width(&self) -> usize {
-        self.width
-    }
+    pub fn width(&self) -> usize { self.width }
 
     /// Get window height.
     #[inline]
-    pub fn height(&self) -> usize {
-        self.height
-    }
+    pub fn height(&self) -> usize { self.height }
 }
