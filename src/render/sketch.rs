@@ -60,6 +60,24 @@ impl Sketch {
         self
     }
 
+    /// Draw an oval at `pos` with width `width` and height `height` and color `color`.
+    #[inline]
+    pub fn oval(
+        &mut self,
+        pos: Vector2<u32>,
+        width: u32,
+        height: u32,
+        color: Color,
+    ) -> &mut Sketch {
+        self.0.push(Operation::Oval {
+            pos,
+            width,
+            height,
+            color,
+        });
+        self
+    }
+
     /// Just returns [Sketch] as &mut.\
     /// Only existent for example and testing purposes.
     #[inline]
@@ -93,6 +111,13 @@ pub enum Operation {
         height: u32,
         data: Image,
     },
+
+    Oval {
+        pos: Vector2<u32>,
+        width: u32,
+        height: u32,
+        color: Color,
+    },
 }
 
 impl Operation {
@@ -100,6 +125,34 @@ impl Operation {
     #[inline(never)]
     pub fn apply(&self, canvas: &mut Canvas) {
         match self {
+
+            Operation::Oval { pos, width, height, color } => {
+                let start_x = pos.x;
+                let start_y = pos.y;
+                let end_x = start_x + *width;
+                let end_y = start_y + *height;
+
+                let a = *width as f32 / 2.0;
+                let b = *height as f32 / 2.0;
+                let cx = start_x as f32 + a;
+                let cy = start_y as f32 + b;
+
+                for y in start_y..end_y {
+                    for x in start_x..end_x {
+                        let px = x as f32 + 0.5;
+                        let py = y as f32 + 0.5;
+                        let dx = px - cx;
+                        let dy = py - cy;
+
+                        let distance_squared = (dx * dx / (a * a) + dy * dy / (b * b)).abs();
+
+                        if distance_squared <= 1.0 {
+                            canvas.set_pixel(x as usize, y as usize, color);
+                        }
+                    }
+                }
+            }
+
             Operation::Line { to, from, color } => {
                 let dx = to.x as isize - from.x as isize;
                 let dy = to.y as isize - from.y as isize;

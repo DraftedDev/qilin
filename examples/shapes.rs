@@ -38,7 +38,8 @@ impl Scene for ShapeScene {
                 // draw circle at (100, 100) with radius of 30 and color red
                 .circle(vec2(100, 100), 30, Color::RED)
                 // draw rectangle at (300, 300) with width of 100 and height of 100 and color blue
-                .rect(vec2(300, 300), 100, 100, Color::BLUE),
+                .rect(vec2(300, 300), 100, 100, Color::BLUE)
+                .oval(vec2(400, 200), 120, 60, Color::CYAN),
         );
     }
 
