@@ -43,7 +43,7 @@ impl Scene for ShapeScene {
         );
     }
 
-    fn fixed_update(&mut self, canvas: &mut Canvas, ctx: &mut GameContext) {
+    fn fixed_update(&mut self, _canvas: &mut Canvas, _ctx: &mut GameContext) {
         // Will be called X times per second.
         // This ensures, physics are applied independent of frame-rate.
         // See https://docs.unity3d.com/ScriptReference/MonoBehaviour.FixedUpdate.html for FixedUpdate() in Unity.

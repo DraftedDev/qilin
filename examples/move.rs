@@ -7,7 +7,7 @@ use qilin::render::color::Color;
 use qilin::render::sketch::Sketch;
 use qilin::scene::Scene;
 use qilin::simplified::vec2;
-use qilin::types::{GameConfig, FPS30, FPS120, FPS60};
+use qilin::types::{GameConfig, FPS60};
 use qilin::ScaleMode;
 use qilin::WindowOptions;
 use qilin::Key;
@@ -37,7 +37,7 @@ impl Scene for BounceScene {
     fn enter(&mut self) { println!("What do you call a fake noodle?") }
 
     // gets called when window requests draw updates
-    fn update(&mut self, canvas: &mut Canvas, ctx: &mut GameContext) {
+    fn update(&mut self, canvas: &mut Canvas, _ctx: &mut GameContext) {
         // draw walls in red
         canvas.draw(
             Sketch::new()
@@ -51,7 +51,7 @@ impl Scene for BounceScene {
         canvas.draw(Sketch::new().circle(self.pos, 30, Color::AQUA));
     }
 
-    fn fixed_update(&mut self, canvas: &mut Canvas, ctx: &mut GameContext) {
+    fn fixed_update(&mut self, _canvas: &mut Canvas, ctx: &mut GameContext) {
         // move player if key pressed and not hitting wall
         {
             if ctx.is_key_down(Key::W) && self.pos.y > MIN_Y {
