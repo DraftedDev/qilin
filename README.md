@@ -6,9 +6,6 @@
 Qilin is a super lightweight 2D Game Engine made with Rust.\
 The focus of this Project is to develop a Game Engine to make 2D Games fast, performant and without a bunch of bytes.
 
-## Features & Future Improvements
-See [FEATURES.md](FEATURES.md)...
-
 ## Goals
 - **Fun**: Qilin is not a serious engine, but rather a fun Project to make fun Games with fun.
 - **Compile Times**: Developing Games in Rust can be very slow, due to compile times. Qilin tries to fix this by reducing features & dependencies.
