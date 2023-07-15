@@ -1,3 +1,4 @@
+use std::time::{Duration, Instant};
 use crate::game::context::GameContext;
 use crate::render::canvas::Canvas;
 use crate::scene::Scene;
@@ -64,10 +65,27 @@ impl Game {
 
         let mut canvas = Canvas::new(*width, *height);
 
+        let fixed_time_step = self.config.fixed_time_step;
+
+        let mut last_time = Instant::now();
+        let mut accumulated_time = Duration::from_secs(0);
+
         while window.is_open() {
+            let current_time = Instant::now();
+            let delta_time = current_time - last_time;
+            last_time = current_time;
+            accumulated_time += delta_time;
+
             canvas.cleanse();
-            self.scene
-                .update(&mut canvas, &mut GameContext::new(&mut window));
+
+            self.scene.update(&mut canvas, &mut GameContext::new(&mut window));
+
+            // Call fixed_update multiple times if necessary.
+            while accumulated_time >= fixed_time_step {
+                self.scene.fixed_update(&mut canvas, &mut GameContext::new(&mut window));
+                accumulated_time -= fixed_time_step;
+            }
+
             window.update_with_buffer(&canvas.clone().buffer(), *width, *height)?;
         }
 

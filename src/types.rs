@@ -12,8 +12,8 @@ pub struct GameConfig {
     pub width: usize,
     /// Height of the window. Default is 600.
     pub height: usize,
-    /// How many times the [crate::scene::Scene::fixed_update] function is called in one second. Default is 50.
-    pub fixed_update_interval: usize,
+    /// Defines the fixed time step and how many times [crate::scene::Scene::fixed_update] is called in one second. Default is [Duration::from_secs_f32(1.0 / 30.0)] meaning 30 times per second.
+    pub fixed_time_step: Duration,
     /// Window options.
     pub window: WindowOptions,
 }
@@ -26,7 +26,7 @@ impl Default for GameConfig {
             update_rate_limit: FPS60,
             width: 800,
             height: 600,
-            fixed_update_interval: 50,
+            fixed_time_step: Duration::from_secs_f32(1.0 / 60.0),
             window: WindowOptions {
                 borderless: false,
                 title: true,
