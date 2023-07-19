@@ -8,6 +8,8 @@ pub mod scene;
 pub mod simplified;
 /// Contains common types of qilin.
 pub mod types;
+/// Contains math functions to manipulate `mint` types, like [Vector2] or [Vector3].
+pub mod math;
 
 /// Contains utils for converting images from the `image` crate to a qilin [types::Image].\
 /// Requires `image` feature.
