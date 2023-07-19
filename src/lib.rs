@@ -1,5 +1,7 @@
 /// Contains structs for game control and windowing.
 pub mod game;
+/// Contains math functions to manipulate `mint` types, like [Vector2] or [Vector3].
+pub mod math;
 /// Contains structs for the [game] module to use. Mostly rendering and geometry stuff.
 pub mod render;
 /// Contains the [scene::Scene] trait.

@@ -1,9 +1,9 @@
-use std::time::{Duration, Instant};
 use crate::game::context::GameContext;
 use crate::render::canvas::Canvas;
 use crate::scene::Scene;
 use crate::types::GameConfig;
 use minifb::Window;
+use std::time::{Duration, Instant};
 
 /// Main Game initiator to run window and enter scenes.
 pub struct Game {
@@ -78,11 +78,13 @@ impl Game {
 
             canvas.cleanse();
 
-            self.scene.update(&mut canvas, &mut GameContext::new(&mut window));
+            self.scene
+                .update(&mut canvas, &mut GameContext::new(&mut window));
 
             // Call fixed_update multiple times if necessary.
             while accumulated_time >= fixed_time_step {
-                self.scene.fixed_update(&mut canvas, &mut GameContext::new(&mut window));
+                self.scene
+                    .fixed_update(&mut canvas, &mut GameContext::new(&mut window));
                 accumulated_time -= fixed_time_step;
             }
 
