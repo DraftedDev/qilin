@@ -1,10 +1,10 @@
 use mint::Quaternion;
-use std::ops::{Add, Sub, Mul, Div};
+use std::ops::{Add, Div, Mul, Sub};
 
 /// Trait to extend the `Vector2` struct from the `mint` crate.
 pub trait QuatExt<T>
-    where
-        T: Add<Output = T> + Sub<Output = T> + Mul<Output = T> + Div<Output = T> + Copy,
+where
+    T: Add<Output = T> + Sub<Output = T> + Mul<Output = T> + Div<Output = T> + Copy,
 {
     fn magnitude(&self) -> T;
     fn normalize(&self) -> Quaternion<T>;

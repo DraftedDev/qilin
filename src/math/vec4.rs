@@ -1,10 +1,10 @@
 use mint::Vector4;
-use std::ops::{Add, Sub, Mul, Div};
+use std::ops::{Add, Div, Mul, Sub};
 
 /// Trait to extend the `Vector4` struct from the `mint` crate.
 pub trait Vector4Ext<T>
-    where
-        T: Add<Output = T> + Sub<Output = T> + Mul<Output = T> + Div<Output = T> + Copy,
+where
+    T: Add<Output = T> + Sub<Output = T> + Mul<Output = T> + Div<Output = T> + Copy,
 {
     fn magnitude(&self) -> T;
     fn normalize(&self) -> Vector4<T>;
@@ -35,7 +35,8 @@ impl Vector4Ext<f32> for Vector4<f32> {
 // Extend Vector4 with T = f32
 impl Vector4Ext<u32> for Vector4<u32> {
     fn magnitude(&self) -> u32 {
-        ((self.x * self.x + self.y * self.y + self.z * self.z + self.w * self.w) as f64).sqrt() as u32
+        ((self.x * self.x + self.y * self.y + self.z * self.z + self.w * self.w) as f64).sqrt()
+            as u32
     }
 
     fn normalize(&self) -> Vector4<u32> {

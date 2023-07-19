@@ -1,10 +1,10 @@
 use mint::Vector2;
-use std::ops::{Add, Sub, Mul, Div};
+use std::ops::{Add, Div, Mul, Sub};
 
 /// Trait to extend the `Vector2` struct from the `mint` crate.
 pub trait Vector2Ext<T>
-    where
-        T: Add<Output = T> + Sub<Output = T> + Mul<Output = T> + Div<Output = T> + Copy,
+where
+    T: Add<Output = T> + Sub<Output = T> + Mul<Output = T> + Div<Output = T> + Copy,
 {
     fn magnitude(&self) -> T;
     fn normalize(&self) -> Vector2<T>;
@@ -17,9 +17,7 @@ pub trait Vector2Ext<T>
 
 // Extend Vector2 with T = f32
 impl Vector2Ext<f32> for Vector2<f32> {
-    fn magnitude(&self) -> f32 {
-        (self.x * self.x + self.y * self.y).sqrt()
-    }
+    fn magnitude(&self) -> f32 { (self.x * self.x + self.y * self.y).sqrt() }
 
     fn normalize(&self) -> Vector2<f32> {
         let mag = self.magnitude();
@@ -29,13 +27,9 @@ impl Vector2Ext<f32> for Vector2<f32> {
         }
     }
 
-    fn dot(&self, other: &Vector2<f32>) -> f32 {
-        self.x * other.x + self.y * other.y
-    }
+    fn dot(&self, other: &Vector2<f32>) -> f32 { self.x * other.x + self.y * other.y }
 
-    fn cross(&self, other: &Vector2<f32>) -> f32 {
-        self.x * other.y - self.y * other.x
-    }
+    fn cross(&self, other: &Vector2<f32>) -> f32 { self.x * other.y - self.y * other.x }
 
     fn distance(&self, other: &Vector2<f32>) -> f32 {
         let dx = self.x - other.x;
@@ -62,9 +56,7 @@ impl Vector2Ext<f32> for Vector2<f32> {
 
 // Extend Vector2 with T = u32
 impl Vector2Ext<u32> for Vector2<u32> {
-    fn magnitude(&self) -> u32 {
-        ((self.x * self.x + self.y * self.y) as f64).sqrt() as u32
-    }
+    fn magnitude(&self) -> u32 { ((self.x * self.x + self.y * self.y) as f64).sqrt() as u32 }
 
     fn normalize(&self) -> Vector2<u32> {
         let mag = self.magnitude();
@@ -74,13 +66,9 @@ impl Vector2Ext<u32> for Vector2<u32> {
         }
     }
 
-    fn dot(&self, other: &Vector2<u32>) -> u32 {
-        self.x * other.x + self.y * other.y
-    }
+    fn dot(&self, other: &Vector2<u32>) -> u32 { self.x * other.x + self.y * other.y }
 
-    fn cross(&self, other: &Vector2<u32>) -> u32 {
-        self.x * other.y - self.y * other.x
-    }
+    fn cross(&self, other: &Vector2<u32>) -> u32 { self.x * other.y - self.y * other.x }
 
     fn distance(&self, other: &Vector2<u32>) -> u32 {
         let dx = (self.x as i32 - other.x as i32).abs();

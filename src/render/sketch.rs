@@ -125,8 +125,12 @@ impl Operation {
     #[inline(never)]
     pub fn apply(&self, canvas: &mut Canvas) {
         match self {
-
-            Operation::Oval { pos, width, height, color } => {
+            Operation::Oval {
+                pos,
+                width,
+                height,
+                color,
+            } => {
                 let start_x = pos.x;
                 let start_y = pos.y;
                 let end_x = start_x + *width;

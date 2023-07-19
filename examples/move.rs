@@ -1,5 +1,3 @@
-use std::time::Duration;
-use qilin::Vector2;
 use qilin::game::context::GameContext;
 use qilin::game::game::Game;
 use qilin::render::canvas::Canvas;
@@ -8,9 +6,11 @@ use qilin::render::sketch::Sketch;
 use qilin::scene::Scene;
 use qilin::simplified::vec2;
 use qilin::types::{GameConfig, FPS60};
-use qilin::ScaleMode;
-use qilin::WindowOptions;
 use qilin::Key;
+use qilin::ScaleMode;
+use qilin::Vector2;
+use qilin::WindowOptions;
+use std::time::Duration;
 
 const MAX_Y: u32 = 560;
 const MAX_X: u32 = 760;

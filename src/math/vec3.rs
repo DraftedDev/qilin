@@ -1,10 +1,10 @@
 use mint::Vector3;
-use std::ops::{Add, Sub, Mul, Div};
+use std::ops::{Add, Div, Mul, Sub};
 
 /// Trait to extend the `Vector3` struct from the `mint` crate.
 pub trait Vector3Ext<T>
-    where
-        T: Add<Output = T> + Sub<Output = T> + Mul<Output = T> + Div<Output = T> + Copy,
+where
+    T: Add<Output = T> + Sub<Output = T> + Mul<Output = T> + Div<Output = T> + Copy,
 {
     fn magnitude(&self) -> T;
     fn normalize(&self) -> Vector3<T>;
@@ -14,9 +14,7 @@ pub trait Vector3Ext<T>
 
 // Extend Vector3 with T = f32
 impl Vector3Ext<f32> for Vector3<f32> {
-    fn magnitude(&self) -> f32 {
-        (self.x * self.x + self.y * self.y + self.z * self.z).sqrt()
-    }
+    fn magnitude(&self) -> f32 { (self.x * self.x + self.y * self.y + self.z * self.z).sqrt() }
 
     fn normalize(&self) -> Vector3<f32> {
         let mag = self.magnitude();
