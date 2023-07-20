@@ -1,5 +1,6 @@
 /// Contains u32 in 0RGP format, to represent Colors.
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Debug, Default, Eq, Ord, PartialOrd, PartialEq)]
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub struct Color(pub u32);
 
 impl Color {

@@ -17,6 +17,7 @@ Lightweight Game Engine for making fun 2d Games in Rust.
 minifb = "0.24.0"
 mint = "0.5.9"
 image = { version = "0.24.6", optional = true, default-features = false }
+serde = { version = "1.0.164", default-features = false, optional = true }
 
 [features]
 # Doesn't contain any features
@@ -25,6 +26,8 @@ default = []
 minifb = []
 # Exports utility functions for converting images from the image crate to a qilin image
 image = ["dep:image", "image/bmp", "image/jpeg", "image/png", "image/ico"]
+# Adds serde compatibility
+serde = ["dep:serde", "mint/serde", "serde/derive"]
 
 [[example]]
 name = "shapes"
