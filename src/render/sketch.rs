@@ -3,6 +3,7 @@ use crate::render::color::Color;
 use crate::types::Image;
 use mint::Vector2;
 
+#[derive(Clone, Debug, Default, Eq, Ord, PartialOrd, PartialEq)]
 pub struct Sketch(pub(crate) Vec<Operation>);
 
 impl Sketch {
@@ -85,6 +86,7 @@ impl Sketch {
 }
 
 /// A drawing operation to apply to a [Canvas] using a [Sketch].
+#[derive(Clone, Debug, Eq, Ord, PartialOrd, PartialEq)]
 pub enum Operation {
     Line {
         from: Vector2<u32>,

@@ -2,6 +2,7 @@ use crate::render::color::Color;
 use minifb::{Key, KeyRepeat, Window};
 
 /// Game controller to execute game logic and get input.
+#[derive(Debug)]
 pub struct GameContext<'a> {
     window: &'a mut Window,
 }

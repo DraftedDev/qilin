@@ -3,6 +3,7 @@ use minifb::{Scale, ScaleMode, WindowOptions};
 use std::time::Duration;
 
 /// Game Configuration containing title, max fps, width, height and window options.
+#[derive(Clone, Debug)]
 pub struct GameConfig {
     /// Window title. Default is "New Game".
     pub title: String,
