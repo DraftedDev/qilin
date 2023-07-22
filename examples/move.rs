@@ -1,3 +1,5 @@
+//! Demonstrates how you can implement game logic, like movement.
+
 use qilin::game::context::GameContext;
 use qilin::game::game::Game;
 use qilin::render::canvas::Canvas;

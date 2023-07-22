@@ -1,7 +1,7 @@
 use crate::render::color::Color;
 use crate::types::Image;
 use image::buffer::Pixels;
-use image::{DynamicImage, Pixel, Rgb};
+use image::{DynamicImage, Rgb};
 
 /// Convert a DynamicImage from the `image` crate to a qilin `Image`.
 #[inline]

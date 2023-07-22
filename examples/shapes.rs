@@ -1,3 +1,5 @@
+//! Demonstrates common shape drawing.
+
 use qilin::game::context::GameContext;
 use qilin::game::game::Game;
 use qilin::render::canvas::Canvas;
