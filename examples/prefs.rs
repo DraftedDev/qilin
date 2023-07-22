@@ -1,18 +1,17 @@
 //! Shows how to use the `PlayerPrefs` struct.
 //! NOTE: REQUIRES `store` FEATURE!
 
-use std::path::PathBuf;
-use std::time::Duration;
 use qilin::game::context::GameContext;
 use qilin::game::game::Game;
 use qilin::game::store::{PlayerPrefs, Storable};
 use qilin::render::canvas::Canvas;
-
+use std::path::PathBuf;
+use std::time::Duration;
 
 use qilin::scene::Scene;
 
-use qilin::Key;
 use qilin::types::{GameConfig, FPS30};
+use qilin::Key;
 use qilin::ScaleMode;
 use qilin::WindowOptions;
 
@@ -23,8 +22,8 @@ struct PrefsScene {
 impl Scene for PrefsScene {
     // create new empty scene
     fn new() -> Self
-        where
-            Self: Sized,
+    where
+        Self: Sized,
     {
         Self {
             // creates player prefs at "player_prefs.json"
@@ -39,7 +38,9 @@ impl Scene for PrefsScene {
         println!("Press 's' to save player prefs.");
 
         // stores the value "count" in the player prefs
-        self.prefs.insert("count".to_string(), Storable::Int(0)).unwrap();
+        self.prefs
+            .insert("count".to_string(), Storable::Int(0))
+            .unwrap();
     }
 
     // gets called when window requests draw updates
@@ -53,13 +54,22 @@ impl Scene for PrefsScene {
         // See https://docs.unity3d.com/ScriptReference/MonoBehaviour.FixedUpdate.html for FixedUpdate() in Unity.
 
         // get the value "count" from the player prefs
-        let count = self.prefs.get("count".to_string()).unwrap().as_int().unwrap();
+        let count = self
+            .prefs
+            .get("count".to_string())
+            .unwrap()
+            .as_int()
+            .unwrap();
 
         // mutate the value "count" depending on input, or save the file
         if ctx.is_key_down(Key::Q) {
-            self.prefs.insert("count".to_string(), Storable::Int(*count - 1)).unwrap();
-        }else if ctx.is_key_down(Key::E) {
-            self.prefs.insert("count".to_string(), Storable::Int(*count + 1)).unwrap();
+            self.prefs
+                .insert("count".to_string(), Storable::Int(*count - 1))
+                .unwrap();
+        } else if ctx.is_key_down(Key::E) {
+            self.prefs
+                .insert("count".to_string(), Storable::Int(*count + 1))
+                .unwrap();
         } else if ctx.is_key_down(Key::S) {
             self.prefs.save();
         }

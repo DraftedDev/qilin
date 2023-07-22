@@ -1,7 +1,7 @@
-use std::fs;
-use std::path::PathBuf;
 use hashbrown::HashMap;
 use serde::{Deserialize, Serialize};
+use std::fs;
+use std::path::PathBuf;
 
 #[derive(Serialize, Deserialize)]
 pub struct PlayerPrefs {
@@ -29,43 +29,30 @@ impl PlayerPrefs {
         Some(())
     }
 
-    pub fn get(&self, key: String) -> Option<&Storable> {
-        self.data.get(&key)
-    }
+    pub fn get(&self, key: String) -> Option<&Storable> { self.data.get(&key) }
 
     pub fn insert(&mut self, key: String, value: Storable) -> Option<()> {
         self.data.insert(key, value);
         Some(())
     }
 
-    pub fn contains(&self, key: String) -> bool {
-        self.data.contains_key(&key)
-    }
+    pub fn contains(&self, key: String) -> bool { self.data.contains_key(&key) }
 
     pub fn remove(&mut self, key: String) -> Option<()> {
         self.data.remove(&key)?;
         Some(())
     }
 
-    pub fn clear(&mut self) {
-        self.data.clear();
-    }
+    pub fn clear(&mut self) { self.data.clear(); }
 
-    pub fn is_empty(&self) -> bool {
-        self.data.is_empty()
-    }
+    pub fn is_empty(&self) -> bool { self.data.is_empty() }
 
-    pub fn get_path(&self) -> &PathBuf {
-        &self.path
-    }
+    pub fn get_path(&self) -> &PathBuf { &self.path }
 
     pub fn reload(&mut self) -> Option<()> {
-        self.data = serde_json::from_str(
-            fs::read_to_string(&self.path).ok()?.as_str()
-        ).ok()?;
+        self.data = serde_json::from_str(fs::read_to_string(&self.path).ok()?.as_str()).ok()?;
         Some(())
     }
-
 }
 
 #[derive(Serialize, Deserialize)]
