@@ -7,10 +7,10 @@ use qilin::game::context::GameContext;
 use qilin::game::game::Game;
 use qilin::game::store::{PlayerPrefs, Storable};
 use qilin::render::canvas::Canvas;
-use qilin::render::color::Color;
-use qilin::render::sketch::Sketch;
+
+
 use qilin::scene::Scene;
-use qilin::simplified::vec2;
+
 use qilin::Key;
 use qilin::types::{GameConfig, FPS30};
 use qilin::ScaleMode;
@@ -43,7 +43,7 @@ impl Scene for PrefsScene {
     }
 
     // gets called when window requests draw updates
-    fn update(&mut self, canvas: &mut Canvas, ctx: &mut GameContext) {
+    fn update(&mut self, _canvas: &mut Canvas, _ctx: &mut GameContext) {
         // Will be called every frame.
     }
 
