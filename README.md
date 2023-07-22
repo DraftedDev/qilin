@@ -20,6 +20,7 @@ The focus of this Project is to develop a Game Engine to make 2D Games fast, per
 - `default`: Doesn't contain any other features, so you can 100% customize qilin.
 - `minifb`: Exports internal minifb crate.
 - `image`: Exports module to convert Images from the `image` crate to Qilin Images.
+- `store`: Adds the `PlayerPrefs` struct to store game data.
 - `serde`: Adds [serde](https://serde.rs) support for common types. Also enables the `serde` feature for the `mint` crate.
 
 ## Submitting Issues
