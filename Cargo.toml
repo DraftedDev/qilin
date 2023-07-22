@@ -18,16 +18,20 @@ minifb = "0.24.0"
 mint = "0.5.9"
 image = { version = "0.24.6", optional = true, default-features = false }
 serde = { version = "1.0.164", default-features = false, optional = true }
+hashbrown = { version = "0.14.0", optional = true }
+serde_json = { version = "1.0.85", optional = true }
 
 [features]
-# Doesn't contain any features
-default = []
+# Contains store feature
+default = ["store"]
 # Exports internal minifb dependency
 minifb = []
 # Exports utility functions for converting images from the image crate to a qilin image
 image = ["dep:image", "image/bmp", "image/jpeg", "image/png", "image/ico"]
 # Adds serde compatibility
-serde = ["dep:serde", "mint/serde", "serde/derive"]
+serde = ["dep:serde", "mint/serde", "serde/derive", "serde/std", "serde_json"]
+# Adds data storing and player preferences. Also adds serde feature.
+store = ["serde", "hashbrown/serde"]
 
 [[example]]
 name = "shapes"
@@ -37,4 +41,9 @@ harness = false
 [[example]]
 name = "move"
 path = "examples/move.rs"
+harness = false
+
+[[example]]
+name = "prefs"
+path = "examples/prefs.rs"
 harness = false
