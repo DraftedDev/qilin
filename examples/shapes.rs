@@ -7,10 +7,10 @@ use qilin::render::color::Color;
 use qilin::render::sketch::Sketch;
 use qilin::scene::Scene;
 use qilin::simplified::vec2;
-use qilin::types::{GameConfig, FPS30, FPS60};
+use qilin::types::{GameConfig, FPS30};
 use qilin::ScaleMode;
 use qilin::WindowOptions;
-use std::time::Duration;
+
 
 struct ShapeScene;
 
