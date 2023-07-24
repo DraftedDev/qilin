@@ -48,9 +48,7 @@ pub struct TimeStamp(pub Duration);
 
 impl Default for TimeStamp {
     #[inline]
-    fn default() -> Self {
-        Self(Duration::from_secs_f32(1.0 / 60.0))
-    }
+    fn default() -> Self { Self(Duration::from_secs_f32(1.0 / 60.0)) }
 }
 
 /// Update Rate as Duration. Use `types::FPS30`, `types::FPS60` or `types::FPS120` for FPS 30, 60 or 120 fps.

@@ -10,7 +10,7 @@ use std::time::Duration;
 
 use qilin::scene::Scene;
 
-use qilin::types::{GameConfig, FPS30, TimeStamp};
+use qilin::types::{GameConfig, TimeStamp, FPS30};
 use qilin::Key;
 use qilin::ScaleMode;
 use qilin::WindowOptions;

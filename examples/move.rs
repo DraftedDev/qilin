@@ -7,7 +7,7 @@ use qilin::render::color::Color;
 use qilin::render::sketch::Sketch;
 use qilin::scene::Scene;
 use qilin::simplified::vec2;
-use qilin::types::{GameConfig, FPS60, TimeStamp};
+use qilin::types::{GameConfig, TimeStamp, FPS60};
 use qilin::Key;
 use qilin::ScaleMode;
 use qilin::Vector2;
