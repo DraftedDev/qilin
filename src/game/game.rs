@@ -65,7 +65,7 @@ impl Game {
 
         let mut canvas = Canvas::new(*width, *height);
 
-        let fixed_time_step = self.config.fixed_time_step;
+        let fixed_time_step = self.config.fixed_time_step.0;
 
         let mut last_time = Instant::now();
         let mut accumulated_time = Duration::from_secs(0);

@@ -1,5 +1,6 @@
 //! Demonstrates common shape drawing.
 
+use std::time::Duration;
 use qilin::game::context::GameContext;
 use qilin::game::game::Game;
 use qilin::render::canvas::Canvas;
@@ -7,7 +8,7 @@ use qilin::render::color::Color;
 use qilin::render::sketch::Sketch;
 use qilin::scene::Scene;
 use qilin::simplified::vec2;
-use qilin::types::{GameConfig, FPS30};
+use qilin::types::{GameConfig, FPS30, FPS60};
 use qilin::ScaleMode;
 use qilin::WindowOptions;
 
