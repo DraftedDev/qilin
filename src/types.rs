@@ -14,7 +14,7 @@ pub struct GameConfig {
     /// Height of the window. Default is 600.
     pub height: usize,
     /// Defines the fixed time step and how many times [crate::scene::Scene::fixed_update] is called in one second. Default is [Duration::from_secs_f32(1.0 / 30.0)] meaning 30 times per second.
-    pub fixed_time_step: Duration,
+    pub fixed_time_step: TimeStamp,
     /// Window options.
     pub window: WindowOptions,
 }
@@ -27,7 +27,7 @@ impl Default for GameConfig {
             update_rate_limit: FPS60,
             width: 800,
             height: 600,
-            fixed_time_step: Duration::from_secs_f32(1.0 / 60.0),
+            fixed_time_step: TimeStamp::default(),
             window: WindowOptions {
                 borderless: false,
                 title: true,
@@ -40,6 +40,15 @@ impl Default for GameConfig {
             },
         }
     }
+}
+
+/// An alternative type to [Duration] to avoid [Default::default] issues.
+#[derive(Clone, Debug)]
+pub struct TimeStamp(pub Duration);
+
+impl Default for TimeStamp {
+    #[inline]
+    fn default() -> Self { Self(Duration::from_secs_f32(1.0 / 60.0)) }
 }
 
 /// Update Rate as Duration. Use `types::FPS30`, `types::FPS60` or `types::FPS120` for FPS 30, 60 or 120 fps.

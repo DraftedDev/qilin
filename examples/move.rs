@@ -7,7 +7,7 @@ use qilin::render::color::Color;
 use qilin::render::sketch::Sketch;
 use qilin::scene::Scene;
 use qilin::simplified::vec2;
-use qilin::types::{GameConfig, FPS60};
+use qilin::types::{GameConfig, TimeStamp, FPS60};
 use qilin::Key;
 use qilin::ScaleMode;
 use qilin::Vector2;
@@ -85,7 +85,7 @@ fn main() {
             update_rate_limit: FPS60,    // limit update rate to 30 fps, default is 60 fps
             width: 800,                  // set initial width
             height: 600,                 // set initial height
-            fixed_time_step: Duration::from_secs_f32(1.0 / 120.0), // how many times fixed_update will be called, (1.0 / 120.0) means 300 times per second.
+            fixed_time_step: TimeStamp(Duration::from_secs_f32(1.0 / 120.0)), // how many times fixed_update will be called, (1.0 / 120.0) means 120 times per second.
             window: WindowOptions {
                 scale_mode: ScaleMode::AspectRatioStretch, // scale pixels to fit in aspect ratio
                 resize: true,                              // make window resizeable
