@@ -16,6 +16,11 @@ pub mod types;
 #[cfg(feature = "image")]
 pub mod image;
 
+/// Contains audio playing functionality.
+/// Requires `audio` feature.
+#[cfg(feature = "audio")]
+pub mod audio;
+
 pub use minifb::Key;
 pub use minifb::KeyRepeat;
 pub use minifb::Scale;
