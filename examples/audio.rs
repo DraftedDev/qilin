@@ -1,6 +1,5 @@
 //! Demonstrates how to use the [qilin::audio] module to play awesome sound files.\
-//! Requires `audio` feature.
-
+//! Requires `audio` feature.\
 //! Demonstrates how you can implement game logic, like movement.
 
 use qilin::audio::{AudioManager, Panning};
