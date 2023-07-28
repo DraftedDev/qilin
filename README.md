@@ -18,6 +18,7 @@ The focus of this Project is to develop a Game Engine to make 2D Games fast, per
 ## Cargo Features
 
 - `default`: Only contains `store` feature.
+- `audio`: Contains the `audio` module.
 - `minifb`: Exports internal minifb crate.
 - `image`: Exports module to convert Images from the `image` crate to Qilin Images.
 - `store`: Adds the `PlayerPrefs` struct to store game data.
