@@ -1,4 +1,4 @@
-name: Rust
+name: Rust with ALSA support
 
 on:
   push:
@@ -12,10 +12,14 @@ env:
 jobs:
   build:
 
-    runs-on: window-latest
+    runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v3
+
+    - name: Install ALSA development package
+      run: sudo apt-get update && sudo apt-get install -y libasound2-dev
+
     - name: Build
       run: cargo build --verbose --all-features
     - name: Run tests
