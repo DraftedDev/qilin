@@ -11,7 +11,6 @@ use qilin::types::{GameConfig, FPS30};
 use qilin::ScaleMode;
 use qilin::WindowOptions;
 
-
 struct ShapeScene;
 
 impl Scene for ShapeScene {

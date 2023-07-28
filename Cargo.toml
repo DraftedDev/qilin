@@ -6,7 +6,7 @@ authors = ["DraftedDev", "Qilin Contributors"]
 license = "MIT OR Apache-2.0"
 readme = "README.md"
 repository = "https://github.com/DraftedDev/qilin"
-keywords = ["2d", "game-engine", "games"]
+keywords = ["game-engine", "games"]
 categories = ["game-development", "game-engines", "graphics"]
 exclude = ["/.github/*"]
 description = """
@@ -20,6 +20,7 @@ image = { version = "0.24.6", optional = true, default-features = false }
 serde = { version = "1.0.164", default-features = false, optional = true }
 hashbrown = { version = "0.14.0", optional = true }
 serde_json = { version = "1.0.85", optional = true }
+kira = { version = "0.8.4", optional = true }
 
 [features]
 # Contains store feature
@@ -32,6 +33,8 @@ image = ["dep:image", "image/bmp", "image/jpeg", "image/png", "image/ico"]
 serde = ["dep:serde", "mint/serde", "serde/derive", "serde/std", "serde_json"]
 # Adds data storing and player preferences. Also adds serde feature.
 store = ["serde", "hashbrown/serde"]
+# Audio functionalities
+audio = ["dep:kira"]
 
 [[example]]
 name = "shapes"
@@ -46,4 +49,9 @@ harness = false
 [[example]]
 name = "prefs"
 path = "examples/prefs.rs"
+harness = false
+
+[[example]]
+name = "audio"
+path = "examples/audio.rs"
 harness = false
