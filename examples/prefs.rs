@@ -76,7 +76,7 @@ impl Scene for PrefsScene {
     }
 
     // gets called when game exits current scene
-    fn exit(&mut self) { println!("An impasta!") }
+    fn exit(&mut self) { println!("Exiting!") }
 }
 
 fn main() {
