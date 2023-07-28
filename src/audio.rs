@@ -1,8 +1,8 @@
-use std::path::Path;
 use kira::manager::AudioManagerSettings;
 use kira::sound::static_sound::{StaticSoundData, StaticSoundSettings};
 use kira::tween::Value;
 use kira::Volume;
+use std::path::Path;
 
 /// A generic audio manager for playing common audio file formats.
 pub struct AudioManager {
@@ -11,15 +11,12 @@ pub struct AudioManager {
 }
 
 impl AudioManager {
-
     /// Create a new instance, returning [None] if a [kira] error occurred.
     pub fn new() -> Option<AudioManager> {
-        Some(
-            AudioManager {
-                sounds: Vec::new(),
-                kira: kira::manager::AudioManager::new(AudioManagerSettings::default()).ok()?,
-            }
-        )
+        Some(AudioManager {
+            sounds: Vec::new(),
+            kira: kira::manager::AudioManager::new(AudioManagerSettings::default()).ok()?,
+        })
     }
 
     /// Load a sound from a file.
@@ -27,13 +24,22 @@ impl AudioManager {
     /// **volume**: The volume of the sound in decibels.\
     /// **panning**: The panning of the sound, where 0 is hard left and 1 is hard right.\
     /// **reverse**: Whether to play the sound in reverse.
-    pub fn load(&mut self, path: impl AsRef<Path>, volume: f64, panning: Panning, reverse: bool) -> Option<()> {
+    pub fn load(
+        &mut self,
+        path: impl AsRef<Path>,
+        volume: f64,
+        panning: Panning,
+        reverse: bool,
+    ) -> Option<()> {
         self.sounds.push(
-            StaticSoundData::from_file(path, StaticSoundSettings::new()
-                .volume(Volume::Decibels(volume))
-                .panning(panning.to_f64())
-                .reverse(reverse)
-            ).ok()?
+            StaticSoundData::from_file(
+                path,
+                StaticSoundSettings::new()
+                    .volume(Volume::Decibels(volume))
+                    .panning(panning.to_f64())
+                    .reverse(reverse),
+            )
+            .ok()?,
         );
         Some(())
     }
@@ -48,25 +54,20 @@ impl AudioManager {
 
     /// Returns the [kira::manager::AudioManager].\
     /// Requires you to add the [kira] crate as dependency.
-    pub fn kira(&self) -> &kira::manager::AudioManager {
-        &self.kira
-    }
+    pub fn kira(&self) -> &kira::manager::AudioManager { &self.kira }
 
     /// Returns a `Vec` of [kira::sound::static_sound::StaticSoundData].\
     /// Requires you to add the [kira] crate as dependency.
-    pub fn sounds(&self) -> &Vec<StaticSoundData> {
-        &self.sounds
-    }
+    pub fn sounds(&self) -> &Vec<StaticSoundData> { &self.sounds }
 
     /// Unloads the given sound data by index.
-    pub fn unload(&mut self, index: usize) {
-        self.sounds.remove(index);
-    }
+    pub fn unload(&mut self, index: usize) { self.sounds.remove(index); }
 
     /// Sets the volume of the sound at the given index.\
     /// Returns [None] if the sound does not exist.
     pub fn set_volume(&mut self, index: usize, volume: f64) -> Option<()> {
-        self.sounds.get_mut(index)?.settings.volume = Value::from(Volume::Decibels(volume).as_amplitude());
+        self.sounds.get_mut(index)?.settings.volume =
+            Value::from(Volume::Decibels(volume).as_amplitude());
         Some(())
     }
 
@@ -132,9 +133,7 @@ pub enum Panning {
 }
 
 impl Default for Panning {
-    fn default() -> Self {
-        Self::Normal
-    }
+    fn default() -> Self { Self::Normal }
 }
 
 impl Panning {

@@ -1,11 +1,9 @@
 //! Demonstrates how to use the [qilin::audio] module to play awesome sound files.\
 //! Requires `audio` feature.
-//!
 
 //! Demonstrates how you can implement game logic, like movement.
 
-use std::ops::Not;
-use std::time::Duration;
+use qilin::audio::{AudioManager, Panning};
 use qilin::game::context::GameContext;
 use qilin::game::game::Game;
 use qilin::render::canvas::Canvas;
@@ -14,7 +12,8 @@ use qilin::types::{GameConfig, TimeStamp, FPS60};
 use qilin::Key;
 use qilin::ScaleMode;
 use qilin::WindowOptions;
-use qilin::audio::{AudioManager, Panning};
+use std::ops::Not;
+use std::time::Duration;
 
 struct AudioScene {
     manager: AudioManager,
@@ -23,15 +22,19 @@ struct AudioScene {
 impl Scene for AudioScene {
     // create new empty scene
     fn new() -> Self
-        where
-            Self: Sized,
+    where
+        Self: Sized,
     {
-        Self { manager: AudioManager::new().unwrap() }
+        Self {
+            manager: AudioManager::new().unwrap(),
+        }
     }
 
     // gets called when game enters current scene
     fn enter(&mut self) {
-        self.manager.load("examples/assets/glados.wav", 1.0, Panning::Normal, false).unwrap();
+        self.manager
+            .load("examples/assets/glados.wav", 1.0, Panning::Normal, false)
+            .unwrap();
 
         println!("Press 'p' to play sound.");
         println!("Press 'i' to increase volume.");
@@ -49,18 +52,14 @@ impl Scene for AudioScene {
 
         // increase volume
         if ctx.is_key_released(Key::I) {
-            self.manager.set_volume(
-                0,
-                self.manager.get_volume(0).unwrap() + 1.0
-            );
+            self.manager
+                .set_volume(0, self.manager.get_volume(0).unwrap() + 1.0);
         }
 
         // decrease volume
         if ctx.is_key_released(Key::D) {
-            self.manager.set_volume(
-                0,
-                self.manager.get_volume(0).unwrap() - 1.0
-            );
+            self.manager
+                .set_volume(0, self.manager.get_volume(0).unwrap() - 1.0);
         }
 
         // pan hard right
@@ -75,10 +74,8 @@ impl Scene for AudioScene {
 
         // toggle reverse
         if ctx.is_key_released(Key::E) {
-            self.manager.set_reverse(
-                0,
-                self.manager.get_reverse(0).unwrap().not()
-            );
+            self.manager
+                .set_reverse(0, self.manager.get_reverse(0).unwrap().not());
         }
     }
 
