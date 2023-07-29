@@ -122,10 +122,14 @@ pub enum Operation {
     },
 }
 
-impl Operation {
+pub trait Drawable {
+    fn apply(&self, canvas: &mut Canvas);
+}
+
+impl Drawable for Operation {
     /// Apply operation to a [Canvas].
-    #[inline(never)]
-    pub fn apply(&self, canvas: &mut Canvas) {
+    #[inline]
+    fn apply(&self, canvas: &mut Canvas) {
         match self {
             Operation::Oval {
                 pos,

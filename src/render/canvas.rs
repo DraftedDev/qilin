@@ -1,5 +1,5 @@
 use crate::render::color::Color;
-use crate::render::sketch::Sketch;
+use crate::render::sketch::{Drawable, Sketch};
 
 /// Canvas of a game, containing a buffer of pixels to draw to the window.
 #[derive(Clone)]
@@ -82,6 +82,12 @@ impl Canvas {
         for op in &sketch.0 {
             op.apply(self);
         }
+    }
+
+    /// Draw a [Drawable] to the canvas.
+    #[inline]
+    pub fn drawable<T: Drawable>(&mut self, drawable: &T) {
+        drawable.apply(self);
     }
 
     /// Get window width.
