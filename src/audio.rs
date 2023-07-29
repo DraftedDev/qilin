@@ -12,6 +12,7 @@ pub struct AudioManager {
 
 impl AudioManager {
     /// Create a new instance, returning [None] if a [kira] error occurred.
+    #[inline]
     pub fn new() -> Option<AudioManager> {
         Some(AudioManager {
             sounds: Vec::new(),
@@ -24,6 +25,7 @@ impl AudioManager {
     /// **volume**: The volume of the sound in decibels.\
     /// **panning**: The panning of the sound, where 0 is hard left and 1 is hard right.\
     /// **reverse**: Whether to play the sound in reverse.
+    #[inline]
     pub fn load(
         &mut self,
         path: impl AsRef<Path>,
@@ -47,6 +49,7 @@ impl AudioManager {
     /// Play a loaded sound by index.\
     /// Make sure you used [AudioManager::load] to load a sound first.\
     /// Errors if the sound does not exist or a [kira] error occurred.
+    #[inline]
     pub fn play(&mut self, index: usize) -> Option<()> {
         self.kira.play(self.sounds.get(index)?.clone()).ok()?;
         Some(())
@@ -54,17 +57,21 @@ impl AudioManager {
 
     /// Returns the [kira::manager::AudioManager].\
     /// Requires you to add the [kira] crate as dependency.
+    #[inline]
     pub fn kira(&self) -> &kira::manager::AudioManager { &self.kira }
 
-    /// Returns a `Vec` of [kira::sound::static_sound::StaticSoundData].\
+    /// Returns a `Vec` of [StaticSoundData].\
     /// Requires you to add the [kira] crate as dependency.
+    #[inline]
     pub fn sounds(&self) -> &Vec<StaticSoundData> { &self.sounds }
 
     /// Unloads the given sound data by index.
+    #[inline]
     pub fn unload(&mut self, index: usize) { self.sounds.remove(index); }
 
     /// Sets the volume of the sound at the given index.\
     /// Returns [None] if the sound does not exist.
+    #[inline]
     pub fn set_volume(&mut self, index: usize, volume: f64) -> Option<()> {
         self.sounds.get_mut(index)?.settings.volume =
             Value::from(Volume::Decibels(volume).as_amplitude());
@@ -73,6 +80,7 @@ impl AudioManager {
 
     /// Sets the panning of the sound at the given index.\
     /// Returns [None] if the sound does not exist.
+    #[inline]
     pub fn set_panning(&mut self, index: usize, panning: Panning) -> Option<()> {
         self.sounds.get_mut(index)?.settings.panning = Value::from(panning.to_f64());
         Some(())
@@ -80,12 +88,14 @@ impl AudioManager {
 
     /// Sets if the sound at index should be reversed.\
     /// Returns [None] if the sound does not exist.
+    #[inline]
     pub fn set_reverse(&mut self, index: usize, reverse: bool) -> Option<()> {
         self.sounds.get_mut(index)?.settings.reverse = reverse;
         Some(())
     }
 
     /// Get volume of the sound at the given index as decibels.
+    #[inline]
     pub fn get_volume(&self, index: usize) -> Option<f64> {
         if let Value::Fixed(vol) = self.sounds.get(index)?.settings.volume {
             Some(vol.as_decibels())
@@ -95,6 +105,7 @@ impl AudioManager {
     }
 
     /// Get panning of the sound at the given index.
+    #[inline]
     pub fn get_panning(&self, index: usize) -> Option<Panning> {
         if let Value::Fixed(pan) = self.sounds.get(index)?.settings.panning {
             Some(Panning::From(pan))
@@ -104,6 +115,7 @@ impl AudioManager {
     }
 
     /// Get if the sound at the given index should be reversed.
+    #[inline]
     pub fn get_reverse(&self, index: usize) -> Option<bool> {
         Some(self.sounds.get(index)?.settings.reverse)
     }
@@ -133,10 +145,12 @@ pub enum Panning {
 }
 
 impl Default for Panning {
+    #[inline]
     fn default() -> Self { Self::Normal }
 }
 
 impl Panning {
+    #[inline]
     pub fn to_f64(&self) -> f64 {
         match self {
             Self::HardLeft => 0.0,
