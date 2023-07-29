@@ -7,9 +7,9 @@ use qilin::render::color::Color;
 
 use qilin::scene::Scene;
 use qilin::simplified::vec2;
+use qilin::text::TextSketch;
 use qilin::types::{GameConfig, FPS30};
 use qilin::ScaleMode;
-use qilin::text::TextSketch;
 use qilin::WindowOptions;
 
 struct TextScene;
@@ -17,8 +17,8 @@ struct TextScene;
 impl Scene for TextScene {
     // create new empty scene
     fn new() -> Self
-        where
-            Self: Sized,
+    where
+        Self: Sized,
     {
         Self
     }
@@ -31,13 +31,13 @@ impl Scene for TextScene {
         canvas.drawable(
             &TextSketch::new(vec2(10, 10), include_bytes!("assets/Roboto-Medium.ttf"))
                 .with_color(Color::RED)
-                .with_text("Hello World!", 30.0)
+                .with_text("Hello World!", 30.0),
         );
 
         canvas.drawable(
             &TextSketch::new(vec2(10, 100), include_bytes!("assets/Roboto-Medium.ttf"))
                 .with_color(Color::YELLOW)
-                .with_text("Implementing text-rendering was real pain.", 40.0)
+                .with_text("Implementing text-rendering was real pain.", 40.0),
         );
     }
 

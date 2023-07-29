@@ -86,9 +86,7 @@ impl Canvas {
 
     /// Draw a [Drawable] to the canvas.
     #[inline]
-    pub fn drawable<T: Drawable>(&mut self, drawable: &T) {
-        drawable.apply(self);
-    }
+    pub fn drawable<T: Drawable>(&mut self, drawable: &T) { drawable.apply(self); }
 
     /// Get window width.
     #[inline]

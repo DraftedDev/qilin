@@ -1,9 +1,9 @@
-use fontdue::{Font};
-use fontdue::layout::{CoordinateSystem, Layout, TextStyle};
-use mint::Vector2;
 use crate::render::canvas::Canvas;
 use crate::render::color::Color;
 use crate::render::sketch::Drawable;
+use fontdue::layout::{CoordinateSystem, Layout, TextStyle};
+use fontdue::Font;
+use mint::Vector2;
 
 /// Sketch to draw text on a canvas.
 pub struct TextSketch {
@@ -44,7 +44,8 @@ impl TextSketch {
     /// Append new text to the layout with `text` as text and `px` as size in pixels.
     #[inline]
     pub fn with_text(mut self, text: &str, px: f32) -> Self {
-        self.layout.append(&[self.font.clone()], &TextStyle::new(text, px, 0));
+        self.layout
+            .append(&[self.font.clone()], &TextStyle::new(text, px, 0));
         self
     }
 }
