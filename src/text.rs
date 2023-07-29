@@ -15,15 +15,6 @@ pub struct TextSketch {
 
 impl TextSketch {
     /// Create a new empty [TextSketch] with font data.
-    ///
-    /// ### Example
-    /// ```rust
-    /// use mint::Vector2;
-    /// use qilin::text::TextSketch;
-    ///
-    /// let font = include_bytes!("myAssets/myFont.ttf");
-    /// let sketch = TextSketch::new(Vector2::new(10, 10), font);
-    /// ```
     #[inline]
     pub fn new(pos: Vector2<u32>, font: &[u8]) -> Self {
         Self {
