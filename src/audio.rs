@@ -60,7 +60,7 @@ impl AudioManager {
     #[inline]
     pub fn kira(&self) -> &kira::manager::AudioManager { &self.kira }
 
-    /// Returns a `Vec` of [kira::sound::static_sound::StaticSoundData].\
+    /// Returns a `Vec` of [StaticSoundData].\
     /// Requires you to add the [kira] crate as dependency.
     #[inline]
     pub fn sounds(&self) -> &Vec<StaticSoundData> { &self.sounds }
