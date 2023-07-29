@@ -8,7 +8,7 @@ use image::{DynamicImage, Rgb};
 pub fn dynamic_to_img(dynamic: DynamicImage) -> Image { rgb_to_img(dynamic.to_rgb8().pixels()) }
 
 /// Convert Rgb<u8> Pixels to a qilin `Image`.
-#[inline(never)]
+#[inline]
 pub fn rgb_to_img(rgb: Pixels<Rgb<u8>>) -> Image {
     let mut vec: Image = Vec::with_capacity(rgb.len());
     for px in rgb {
