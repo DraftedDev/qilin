@@ -21,6 +21,11 @@ pub mod image;
 #[cfg(feature = "audio")]
 pub mod audio;
 
+/// Contains text rendering functions.
+/// Requires `text` feature.
+#[cfg(feature = "text")]
+pub mod text;
+
 pub use minifb::Key;
 pub use minifb::KeyRepeat;
 pub use minifb::Scale;
