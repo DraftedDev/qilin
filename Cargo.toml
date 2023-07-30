@@ -60,6 +60,6 @@ path = "examples/prefs.rs"
 harness = false
 
 [[example]]
-name = "audio"
-path = "examples/audio.rs"
+name = "ping_pong"
+path = "examples/ping_pong.rs"
 harness = false
