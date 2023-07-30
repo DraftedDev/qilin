@@ -8,13 +8,13 @@ use qilin::render::canvas::Canvas;
 use minifb::{Key, WindowOptions};
 use mint::Vector2;
 
-use qilin::scene::Scene;
-use qilin::types::{GameConfig};
 use qilin::render::color::Color;
 use qilin::render::sketch::Sketch;
-use qilin::ScaleMode;
+use qilin::scene::Scene;
 use qilin::simplified::vec2;
 use qilin::text::TextSketch;
+use qilin::types::GameConfig;
+use qilin::ScaleMode;
 
 const SPEED: i32 = 5;
 const BALL_SPEED: i32 = 5;
@@ -35,8 +35,8 @@ struct PingPongScene {
 
 impl Scene for PingPongScene {
     fn new() -> Self
-        where
-            Self: Sized,
+    where
+        Self: Sized,
     {
         Self {
             paddle_y: 250,
@@ -61,7 +61,7 @@ impl Scene for PingPongScene {
         canvas.drawable(
             &TextSketch::new(vec2(350, 10), include_bytes!("assets/Roboto-Medium.ttf"))
                 .with_text(format!("Score: {}", self.score).as_str(), 20.0)
-                .with_color(Color::YELLOW)
+                .with_color(Color::YELLOW),
         );
 
         // paddle
@@ -81,7 +81,10 @@ impl Scene for PingPongScene {
 
         // goal
         canvas.draw(Sketch::new().rect(
-            vec2((self.window_width - GOAL_WIDTH) as u32, ((self.window_height - GOAL_HEIGHT) / 2) as u32),
+            vec2(
+                (self.window_width - GOAL_WIDTH) as u32,
+                ((self.window_height - GOAL_HEIGHT) / 2) as u32,
+            ),
             GOAL_WIDTH as u32,
             GOAL_HEIGHT as u32,
             Color::AQUA,
@@ -114,14 +117,20 @@ impl Scene for PingPongScene {
         if self.ball_pos.x > self.window_width - BALL_RADIUS {
             self.ball_dir.x *= -1;
             // Adjust the ball's position so it doesn't go out of the window
-            self.ball_pos.x = self.ball_pos.x.clamp(BALL_RADIUS, self.window_width - BALL_RADIUS);
+            self.ball_pos.x = self
+                .ball_pos
+                .x
+                .clamp(BALL_RADIUS, self.window_width - BALL_RADIUS);
         }
 
         // Bounce ball on the left wall
         if self.ball_pos.x < BALL_RADIUS {
             self.ball_dir.x *= -1;
             // Adjust the ball's position so it doesn't go out of the window
-            self.ball_pos.x = self.ball_pos.x.clamp(BALL_RADIUS, self.window_width - BALL_RADIUS);
+            self.ball_pos.x = self
+                .ball_pos
+                .x
+                .clamp(BALL_RADIUS, self.window_width - BALL_RADIUS);
             // decrease score
             self.score -= 1;
         }
