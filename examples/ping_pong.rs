@@ -4,12 +4,12 @@
 use qilin::game::context::GameContext;
 use qilin::game::game::Game;
 use qilin::render::canvas::Canvas;
-use std::time::Duration;
+
 use minifb::{Key, WindowOptions};
 use mint::Vector2;
 
 use qilin::scene::Scene;
-use qilin::types::{GameConfig, FPS60};
+use qilin::types::{GameConfig};
 use qilin::render::color::Color;
 use qilin::render::sketch::Sketch;
 use qilin::ScaleMode;
