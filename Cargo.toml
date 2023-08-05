@@ -63,3 +63,8 @@ harness = false
 name = "ping_pong"
 path = "examples/ping_pong.rs"
 harness = false
+
+[[example]]
+name = "click_and_hover"
+path = "examples/click_and_hover.rs"
+harness = false

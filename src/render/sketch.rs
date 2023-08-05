@@ -1,6 +1,7 @@
 use crate::render::canvas::Canvas;
 use crate::render::color::Color;
 use crate::types::Image;
+use minifb::Key;
 use mint::Vector2;
 
 #[derive(Clone, Debug, Default, Eq, Ord, PartialOrd, PartialEq)]
@@ -83,6 +84,8 @@ impl Sketch {
     /// Only existent for example and testing purposes.
     #[inline]
     pub fn empty(&mut self) -> &mut Sketch { self }
+
+    pub fn get_operations(&self) -> &Vec<Operation> { &self.0 }
 }
 
 /// A drawing operation to apply to a [Canvas] using a [Sketch].
