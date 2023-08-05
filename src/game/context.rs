@@ -95,7 +95,7 @@ impl<'a> GameContext<'a> {
         let (mouse_x, mouse_y) = pos.unwrap();
 
         match operation {
-            Operation::Line { from, to, color } => {
+            Operation::Line { from, to, color: _ } => {
                 // Calculate the bounding box of the line
                 let min_x = from.x.min(to.x);
                 let max_x = from.x.max(to.x);
@@ -108,7 +108,7 @@ impl<'a> GameContext<'a> {
                     && mouse_y >= min_y as f32
                     && mouse_y <= max_y as f32
             }
-            Operation::Circle { radius, color, pos } => {
+            Operation::Circle { radius, color: _, pos } => {
                 // Calculate the distance between the mouse position and the circle center
                 let dist_x = mouse_x - pos.x as f32;
                 let dist_y = mouse_y - pos.y as f32;
@@ -118,7 +118,7 @@ impl<'a> GameContext<'a> {
                 distance_squared <= (radius * radius) as f32
             }
             Operation::Rect {
-                color,
+                color: _,
                 pos,
                 width,
                 height,
@@ -133,7 +133,7 @@ impl<'a> GameContext<'a> {
                 pos,
                 width,
                 height,
-                data,
+                data: _,
             } => {
                 // Check if the mouse position is within the image boundaries
                 mouse_x >= pos.x as f32
@@ -142,7 +142,7 @@ impl<'a> GameContext<'a> {
                     && mouse_y <= (pos.y + height) as f32
             }
             Operation::Oval {
-                color,
+                color: _,
                 pos,
                 width,
                 height,

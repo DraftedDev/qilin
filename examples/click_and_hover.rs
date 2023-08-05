@@ -1,6 +1,6 @@
 //! Demonstrates common input handling
 
-use minifb::{Key, MouseButton};
+use minifb::{MouseButton};
 use qilin::game::context::GameContext;
 use qilin::game::game::Game;
 use qilin::render::canvas::Canvas;

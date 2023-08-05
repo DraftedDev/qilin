@@ -1,7 +1,7 @@
 use crate::render::canvas::Canvas;
 use crate::render::color::Color;
 use crate::types::Image;
-use minifb::Key;
+
 use mint::Vector2;
 
 #[derive(Clone, Debug, Default, Eq, Ord, PartialOrd, PartialEq)]
