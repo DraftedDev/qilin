@@ -59,3 +59,9 @@ pub const FPS120: Duration = Duration::from_nanos(8333333);
 
 /// Vector of colors to represent an image.
 pub type Image = Vec<Color>;
+
+#[derive(Clone, Copy, Debug)]
+pub enum Button {
+    Keyboard(minifb::Key),
+    Mouse(minifb::MouseButton),
+}

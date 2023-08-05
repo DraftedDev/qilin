@@ -28,6 +28,7 @@ pub mod text;
 
 pub use minifb::Key;
 pub use minifb::KeyRepeat;
+pub use minifb::MouseButton;
 pub use minifb::Scale;
 pub use minifb::ScaleMode;
 pub use minifb::WindowOptions;
