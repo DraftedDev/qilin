@@ -60,6 +60,19 @@ impl Canvas {
         }
     }
 
+    /// Get pixel at `x` and `y` to `color`.
+    #[inline]
+    pub fn get_pixel(&self, x: usize, y: usize) -> Option<Color> {
+        if let Some(cy) = y.checked_mul(self.width) {
+            if let Some(cx) = cy.checked_add(x) {
+                if let Some(px) = self.buffer.get(cx) {
+                    return Some(Color(*px));
+                }
+            }
+        }
+        None
+    }
+
     /// Clear the canvas with `color`.\
     /// **NOTE**: Canvas does not always match window dimensions. To change the background color of the window, use [crate::game::context::GameContext].
     #[inline(never)]

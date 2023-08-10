@@ -31,13 +31,15 @@ impl Scene for TextScene {
         canvas.drawable(
             &TextSketch::new(vec2(10, 10), include_bytes!("assets/Roboto-Medium.ttf"))
                 .with_color(Color::RED)
-                .with_text("Hello World!", 30.0),
+                // .with_ssa(true) // we don't need this, since ssa is enabled by default
+                .with_text("This is with Subpixel Anti-Aliased", 30.0),
         );
 
         canvas.drawable(
             &TextSketch::new(vec2(10, 100), include_bytes!("assets/Roboto-Medium.ttf"))
-                .with_color(Color::YELLOW)
-                .with_text("Implementing text-rendering was real pain.", 40.0),
+                .with_color(Color::RED)
+                .with_ssa(false)
+                .with_text("This is without Subpixel Anti-Aliased", 30.0),
         );
     }
 

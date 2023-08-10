@@ -108,7 +108,11 @@ impl<'a> GameContext<'a> {
                     && mouse_y >= min_y as f32
                     && mouse_y <= max_y as f32
             }
-            Operation::Circle { radius, color: _, pos } => {
+            Operation::Circle {
+                radius,
+                color: _,
+                pos,
+            } => {
                 // Calculate the distance between the mouse position and the circle center
                 let dist_x = mouse_x - pos.x as f32;
                 let dist_y = mouse_y - pos.y as f32;
