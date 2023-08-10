@@ -35,4 +35,16 @@ impl Color {
 
         (r, g, b)
     }
+
+    /// Create a new Color from RGBA values.
+    #[inline]
+    pub const fn from_rgba(r: u8, g: u8, b: u8, a: u8) -> Color {
+        let (r, g, b, a) = (
+            ((r as u32 * a as u32) >> 8),
+            ((g as u32 * a as u32) >> 8),
+            ((b as u32 * a as u32) >> 8),
+            a as u32,
+        );
+        Color((a << 24) | (r << 16) | (g << 8) | b)
+    }
 }
