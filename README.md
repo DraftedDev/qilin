@@ -17,7 +17,6 @@ The focus of this Project is to develop a Game Engine to make 2D Games fast, per
 
 ## Cargo Features
 
-- `default`: Only contains `store` feature.
 - `text`: Contain the `text` module.
 - `audio`: Contains the `audio` module.
 - `minifb`: Exports internal minifb crate.
