@@ -1,4 +1,5 @@
 use crate::game::context::GameContext;
+use crate::plugin::QPlugin;
 use crate::render::canvas::Canvas;
 use crate::scene::Scene;
 use crate::types::GameConfig;
@@ -9,6 +10,7 @@ use std::time::{Duration, Instant};
 pub struct Game {
     config: GameConfig,
     scene: Box<dyn Scene>,
+    plugins: Vec<Box<dyn QPlugin>>,
 }
 
 impl Game {
@@ -24,7 +26,15 @@ impl Game {
         Self {
             config: GameConfig::default(),
             scene: Box::new(scene),
+            plugins: Vec::new(),
         }
+    }
+
+    /// Register a new plugin.
+    #[inline]
+    pub fn with_plugin<P: QPlugin + 'static>(mut self, plugin: P) -> Self {
+        self.plugins.push(Box::new(plugin));
+        self
     }
 
     /// Use given [GameConfig] as config.
@@ -70,7 +80,13 @@ impl Game {
         let mut last_time = Instant::now();
         let mut accumulated_time = Duration::from_secs(0);
 
+        // Enter all plugin states
+        self.plugins.iter_mut().for_each(|pl| {
+            pl.on_enter(&mut canvas);
+        });
+
         while window.is_open() {
+            let ctx = &mut GameContext::new(&mut window);
             let current_time = Instant::now();
             let delta_time = current_time - last_time;
             last_time = current_time;
@@ -78,21 +94,34 @@ impl Game {
 
             canvas.cleanse();
 
-            self.scene
-                .update(&mut canvas, &mut GameContext::new(&mut window));
+            // call plugins before update
+            self.plugins.iter_mut().for_each(|pl| {
+                pl.pre_update(&mut canvas, ctx);
+            });
+
+            self.scene.update(&mut canvas, ctx);
+
+            // call plugins after update
+            self.plugins.iter_mut().for_each(|pl| {
+                pl.post_update(&mut canvas, ctx);
+            });
 
             // Call fixed_update multiple times if necessary.
             while accumulated_time >= fixed_time_step {
-                self.scene
-                    .fixed_update(&mut canvas, &mut GameContext::new(&mut window));
+                self.scene.fixed_update(&mut canvas, ctx);
                 accumulated_time -= fixed_time_step;
             }
 
             window.update_with_buffer(&canvas.clone().buffer(), *width, *height)?;
         }
 
-        // make sure the last scene also calls exit()
+        // make sure the last scene also calls exit()'s
         self.scene.exit();
+
+        // Exit all plugin states
+        self.plugins.iter_mut().for_each(|pl| {
+            pl.on_exit(&mut canvas);
+        });
 
         return Ok(());
     }

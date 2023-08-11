@@ -26,6 +26,11 @@ pub mod audio;
 #[cfg(feature = "text")]
 pub mod text;
 
+/// Contains plugin development features.
+/// Requires `plugin-dev` feature.
+#[cfg(feature = "plugin-dev")]
+pub mod plugin;
+
 pub use minifb::Key;
 pub use minifb::KeyRepeat;
 pub use minifb::MouseButton;
