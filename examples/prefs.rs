@@ -80,7 +80,7 @@ impl Scene for PrefsScene {
 }
 
 fn main() {
-    Game::new::<PrefsScene>() // create game object with ShapeScene as entry scene
+    Game::new::<PrefsScene>()
         .with_config(GameConfig {
             title: "Player Preferences".to_string(), // set window title
             update_rate_limit: FPS30,       // limit update rate to 30 fps, default is 60 fps

@@ -79,10 +79,10 @@ impl Scene for BounceScene {
 }
 
 fn main() {
-    Game::new::<BounceScene>() // create game object with ShapeScene as entry scene
+    Game::new::<BounceScene>()
         .with_config(GameConfig {
             title: "Bouncy".to_string(), // set window title
-            update_rate_limit: FPS60,    // limit update rate to 30 fps, default is 60 fps
+            update_rate_limit: FPS60,    // limit update rate to 60 fps
             width: 800,                  // set initial width
             height: 600,                 // set initial height
             fixed_time_step: TimeStamp(Duration::from_secs_f32(1.0 / 120.0)), // how many times fixed_update will be called, (1.0 / 120.0) means 120 times per second.

@@ -24,7 +24,7 @@ kira = { version = "0.8.4", optional = true }
 fontdue = { version = "0.7.3", optional = true }
 
 [features]
-default = ["store"]
+default = []
 # Exports internal minifb dependency
 minifb = []
 # Exports utility functions for converting images from the image crate to a qilin image
@@ -66,4 +66,9 @@ harness = false
 [[example]]
 name = "click_and_hover"
 path = "examples/click_and_hover.rs"
+harness = false
+
+[[example]]
+name = "plugin"
+path = "examples/plugin.rs"
 harness = false

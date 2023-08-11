@@ -35,4 +35,4 @@ See [CONTRIBUTING.md](CONTRIBUTING.md).
 ## License
 
 Qilin is dual licensed under the MIT and Apache 2.0 License.\
-Unless you explicitly state otherwise, you contributed code will be too dual licensed under these terms.
+Unless you explicitly state otherwise, your contributed code will also be dual licensed under these terms.

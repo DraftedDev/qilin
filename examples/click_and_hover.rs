@@ -59,7 +59,7 @@ impl Scene for InputScene {
 }
 
 fn main() {
-    Game::new::<InputScene>() // create game object with ShapeScene as entry scene
+    Game::new::<InputScene>()
         .with_config(GameConfig {
             title: "My Input".to_string(), // set window title
             update_rate_limit: FPS30,       // limit update rate to 30 fps, default is 60 fps
