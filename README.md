@@ -23,7 +23,6 @@ The focus of this Project is to develop a Game Engine to make 2D Games fast, per
 - `image`: Exports module to convert Images from the `image` crate to Qilin Images.
 - `store`: Adds the `PlayerPrefs` struct to store game data.
 - `serde`: Adds [serde](https://serde.rs) support for common types. Also enables the `serde` feature for the `mint` crate.
-- `plugin-dev`: Adds plugin development support. You won't need this if you just want to register/use plugins.
 
 ## Submitting Issues
 

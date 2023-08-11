@@ -37,8 +37,6 @@ store = ["serde", "hashbrown/serde"]
 audio = ["dep:kira"]
 # Text and Font rendering
 text = ["dep:fontdue"]
-# Plugin development
-plugin-dev = []
 
 [[example]]
 name = "shapes"

@@ -10,6 +10,8 @@ pub mod scene;
 pub mod simplified;
 /// Contains common types of qilin.
 pub mod types;
+/// Contains plugin development features.
+pub mod plugin;
 
 /// Contains utils for converting images from the `image` crate to a qilin [types::Image].\
 /// Requires `image` feature.
@@ -25,11 +27,6 @@ pub mod audio;
 /// Requires `text` feature.
 #[cfg(feature = "text")]
 pub mod text;
-
-/// Contains plugin development features.
-/// Requires `plugin-dev` feature.
-#[cfg(feature = "plugin-dev")]
-pub mod plugin;
 
 pub use minifb::Key;
 pub use minifb::KeyRepeat;
