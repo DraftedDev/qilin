@@ -54,7 +54,7 @@ impl Scene for TextScene {
 }
 
 fn main() {
-    Game::new::<TextScene>() // create game object with ShapeScene as entry scene
+    Game::new::<TextScene>()
         .with_config(GameConfig {
             title: "My Texts".to_string(), // set window title
             update_rate_limit: FPS30,       // limit update rate to 30 fps, default is 60 fps
