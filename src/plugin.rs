@@ -2,7 +2,6 @@ use crate::game::context::GameContext;
 
 use crate::render::canvas::Canvas;
 
-
 pub trait QPlugin {
     /// Gets called before the game enters the main loop.
     fn on_enter(&mut self, canvas: &mut Canvas);
