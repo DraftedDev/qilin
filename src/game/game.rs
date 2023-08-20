@@ -112,7 +112,7 @@ impl Game {
                 accumulated_time -= fixed_time_step;
             }
 
-            window.update_with_buffer(&canvas.clone().buffer(), *width, *height)?;
+            window.update_with_buffer(&canvas.clone().buffer().as_slice(), *width, *height)?;
         }
 
         // make sure the last scene also calls exit()'s
