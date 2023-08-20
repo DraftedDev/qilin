@@ -1,3 +1,5 @@
+/// Contains utils for working with the framebuffer.
+pub mod buffer;
 /// Extension for the [Quaternion](mint::Quaternion) type.
 pub mod quat;
 /// Extension for the [Vector2](mint::Vector2) type.
